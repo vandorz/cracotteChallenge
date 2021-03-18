@@ -1,3 +1,8 @@
 <resources>
-    <string name="app_name">CracotteChallenge</string>
+    <string name="app_name">Title</string>
+
+    <string name="menu_textView_titreJeu">TITLE</string>
+    <string name="menu_button_lancerJeu">Play</string>
+    <string name="menu_button_quitterJeu">Quit</string>
+    <string name="menu_textView_copyright">Copyright : Aymeric Pinel, Clément Guichard, Romain Goyheneix</string>
 </resources>
