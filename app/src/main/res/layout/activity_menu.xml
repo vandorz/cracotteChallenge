@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+tools:context=".menu.MenuActivity">
+
+
+<Button
+    android:id="@+id/menu_button_lancerJeu"
+    android:layout_width="@dimen/_200sdp"
+    android:layout_height="@dimen/_50sdp"
+    android:layout_marginBottom="@dimen/_19sdp"
+    android:text="@string/menu_button_lancerJeu"
+    app:layout_constraintBottom_toTopOf="@+id/menu_button_rules"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintHorizontal_bias="0.502"
+    app:layout_constraintStart_toStartOf="parent" />
+
+<Button
+    android:id="@+id/menu_button_rules"
+    android:layout_width="@dimen/_200sdp"
+    android:layout_height="@dimen/_50sdp"
+    android:layout_marginBottom="@dimen/_19sdp"
+    android:text="@string/menu_button_regles"
+    app:layout_constraintBottom_toTopOf="@+id/menu_button_scores"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent" />
+
+<Button
+    android:id="@+id/menu_button_scores"
+    android:layout_width="@dimen/_200sdp"
+    android:layout_height="@dimen/_50sdp"
+    android:layout_marginBottom="@dimen/_19sdp"
+    android:text="@string/menu_button_scores"
+    app:layout_constraintBottom_toTopOf="@+id/menu_button_quitterJeu"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintHorizontal_bias="0.502"
+    app:layout_constraintStart_toStartOf="parent" />
+
+<Button
+    android:id="@+id/menu_button_quitterJeu"
+    android:layout_width="@dimen/_200sdp"
+    android:layout_height="@dimen/_50sdp"
+    android:layout_marginBottom="@dimen/_72sdp"
+    android:text="@string/menu_button_quitterJeu"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintHorizontal_bias="0.502"
+    app:layout_constraintStart_toStartOf="parent" />
+
+<TextView
+    android:id="@+id/menu_textView_titreJeu"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="@string/menu_textView_titreJeu"
+    android:textSize="@dimen/_75sdp"
+    app:layout_constraintBottom_toTopOf="@+id/menu_button_lancerJeu"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent" />
+
+<TextView
+    android:id="@+id/menu_textView_copyrightsJeu"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="@dimen/_5sdp"
+    android:layout_marginBottom="@dimen/_21sdp"
+    android:text="@string/menu_textView_copyright"
+    android:textSize="6sp"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintStart_toStartOf="parent" />
+
+<ImageView
+    android:id="@+id/menu_button_music"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="@dimen/_10sdp"
+    android:layout_marginEnd="@dimen/_10sdp"
+    android:background="#5A5353"
+    android:clickable="true"
+    android:contentDescription="@string/menu_button_music"
+    android:focusable="true"
+    android:src="@android:drawable/ic_lock_silent_mode_off"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintTop_toTopOf="parent"
+    app:srcCompat="@android:drawable/ic_lock_silent_mode_off"
+    tools:srcCompat="@android:drawable/ic_lock_silent_mode_off"
+    tools:visibility="visible" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
