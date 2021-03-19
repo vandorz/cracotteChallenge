@@ -9,6 +9,8 @@ public abstract class GameObject {
     private float width;
     private float speedX;
     private float speedY;
+    private float accelerationX;
+    private float accelerationY;
     private int opacity;
 
     public GameObject() {
@@ -18,6 +20,8 @@ public abstract class GameObject {
         this.width = 0.0f;
         this.speedX = 0.0f;
         this.speedY = 0.0f;
+        this.accelerationX = 0.0f;
+        this.accelerationY = 0.0f;
         this.opacity = 100;
     }
 
@@ -26,6 +30,13 @@ public abstract class GameObject {
     public void move(float movementInX, float movemntInY) {
         this.positionY += movemntInY;
         this.positionX += movementInX;
+    }
+
+    public void update(){
+        this.positionX += this.speedX;
+        this.positionY += speedY;
+        this.speedX += this.accelerationX;
+        this.speedY += this.accelerationY;
     }
 
     public float getPositionX() {
@@ -74,6 +85,22 @@ public abstract class GameObject {
 
     public void setSpeedY(float speedY) {
         this.speedY = speedY;
+    }
+
+    public float getAccelerationX() {
+        return accelerationX;
+    }
+
+    public void setAccelerationX(float accelerationX) {
+        this.accelerationX = accelerationX;
+    }
+
+    public float getAccelerationY() {
+        return accelerationY;
+    }
+
+    public void setAccelerationY(float accelerationY) {
+        this.accelerationY = accelerationY;
     }
 
     public int getOpacity() {

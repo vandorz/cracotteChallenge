@@ -12,10 +12,16 @@ import android.view.SurfaceView;
 import androidx.annotation.NonNull;
 
 import com.m2dl.cracotte.cracottechallenge.R;
+import com.m2dl.cracotte.cracottechallenge.game.domain.Bat;
+import com.m2dl.cracotte.cracottechallenge.game.domain.GameObject;
 import com.m2dl.cracotte.cracottechallenge.scores.ScoresActivity;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class GameView extends SurfaceView implements SurfaceHolder.Callback {
     public static final int MENU_HEIGHT = 150;
+    public static final float GRAVITY = (float) 9.8/60;
 
     private GameThread thread;
 
@@ -29,6 +35,9 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
     private long score;
 
     private float lightMeasurement;
+
+    private List<GameObject> gameObjectList;
+    private Bat bat;
 
     public GameView(Context context) {
         super(context);
@@ -44,12 +53,27 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
 
     private void initGame() {
         initGameArea();
+        initBat();
+        initGameObjets();
         initScore();
     }
 
     private void initGameArea() {
         screenWidth = getResources().getDisplayMetrics().widthPixels;
         screenHeight = getResources().getDisplayMetrics().heightPixels;
+    }
+
+    private void initBat(){
+        float defineBatWidth = screenWidth/10;
+        float defineBatHeight = screenWidth/10;
+        bat = new Bat(getContext(), defineBatWidth, defineBatHeight);
+        bat.setPositionX(screenWidth/5);
+        bat.setPositionY(screenHeight/2);
+        bat.setAccelerationY(GRAVITY);
+    }
+
+    private void initGameObjets(){
+        gameObjectList = new ArrayList<>();
     }
 
     private void initScore() {
@@ -62,6 +86,8 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
         if (canvas != null) {
             drawBackground(canvas);
             drawScoreMenu(canvas);
+            drawBat(canvas);
+            drawAllObjects(canvas);
         }
     }
 
@@ -86,8 +112,26 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
         canvas.drawText(textScore, screenWidth / 2, textTop, menuTextPaint);
     }
 
+    private void drawBat(Canvas canvas){
+        bat.draw(canvas);
+    }
+
+    private void drawAllObjects(Canvas canvas){
+        for (GameObject gameObject : gameObjectList){
+            gameObject.draw(canvas);
+        }
+    }
+
     public void update() {
+        updateAllObjects();
         updateColors();
+    }
+
+    private void updateAllObjects(){
+        bat.update();
+        for (GameObject gameObject : gameObjectList){
+            gameObject.update();
+        }
     }
 
     private void updateColors() {
@@ -118,7 +162,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
     }
 
     public void touchedScreenEvent(float xPosition, float yPosition) {
-        // TODO
+        bat.fly();
     }
 
     public void updateLightMeasurement(float lightMeasurement) {

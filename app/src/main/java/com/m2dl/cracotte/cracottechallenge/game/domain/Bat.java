@@ -7,9 +7,17 @@ import android.graphics.BitmapFactory;
 import com.m2dl.cracotte.cracottechallenge.R;
 
 public class Bat extends Sprite {
+    private float UP_SPEED_MODIFIER = 2;
 
-    public Bat(Context context) {
+    public Bat(Context context, float width, float height) {
         super();
+        setWidth(width);
+        setHeight(height);
         this.setImage(Bitmap.createScaledBitmap(BitmapFactory.decodeResource(context.getResources(), R.drawable.ic_bat), (int)this.getWidth(), (int)this.getHeight(), true));
     }
+
+    public void fly(){
+        this.setSpeedY(this.getSpeedY() - UP_SPEED_MODIFIER);
+    }
+
 }
