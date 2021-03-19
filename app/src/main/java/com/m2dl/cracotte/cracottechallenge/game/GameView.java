@@ -7,6 +7,7 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.RectF;
+import android.os.Handler;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
@@ -15,6 +16,7 @@ import androidx.annotation.NonNull;
 import com.m2dl.cracotte.cracottechallenge.R;
 import com.m2dl.cracotte.cracottechallenge.game.domain.Bat;
 import com.m2dl.cracotte.cracottechallenge.game.domain.GameObject;
+import com.m2dl.cracotte.cracottechallenge.game.domain.Ultrasound;
 import com.m2dl.cracotte.cracottechallenge.scores.ScoresActivity;
 
 import java.util.ArrayList;
@@ -23,6 +25,8 @@ import java.util.List;
 public class GameView extends SurfaceView implements SurfaceHolder.Callback {
     public static final int MENU_HEIGHT = 150;
     public static final float GRAVITY = 0.4f;
+
+    private final Handler gameViewHandler;
 
     private GameThread thread;
 
@@ -37,6 +41,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
 
     private float lightMeasurement;
 
+
     private List<GameObject> gameObjectList;
     private Bat bat;
     public GameView(Context context) {
@@ -45,6 +50,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
         setFocusable(true);
         initThread();
         initGame();
+        gameViewHandler = new Handler();
     }
 
     private void initThread() {
@@ -86,15 +92,10 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
         super.draw(canvas);
         if (canvas != null) {
             drawBackground(canvas);
-            drawScoreMenu(canvas);
             drawBat(canvas);
             drawAllObjects(canvas);
+            drawScoreMenu(canvas);
         }
-        RectF rectF = new RectF();
-        rectF.set(0,500,0,500);
-        Paint p = new Paint();
-        p.setColor(Color.RED);
-        canvas.drawArc(rectF,0,100, true, p);
     }
 
     public void drawBackground(Canvas canvas) {
@@ -131,6 +132,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
     public void update() {
         updateAllObjects();
         updateColors();
+        removeUnusedObjects();
     }
 
     private void updateAllObjects(){
@@ -143,6 +145,18 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
     private void updateColors() {
         updateBackgroundColor();
         updateScoreMenuColor();
+    }
+
+    private void removeUnusedObjects(){
+        List<GameObject> gameObjectToRemoveList = new ArrayList<>();
+        for (GameObject gameObject : gameObjectList){
+            if (!gameObject.isActive()) {
+                gameObjectToRemoveList.add(gameObject);
+            }
+        }
+        for (GameObject gameObject : gameObjectToRemoveList){
+            gameObjectList.remove(gameObject);
+        }
     }
 
     private void updateBackgroundColor() {
@@ -176,12 +190,27 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
         bat.fly();
     }
 
+    private void launchUltrasound(){
+        Ultrasound ultrasound = new Ultrasound(bat);
+        gameObjectList.add(ultrasound);
+        revealObjects();
+    }
+
+    private void revealObjects(){
+        //TODO
+        gameViewHandler.postDelayed(this::hideObjects, 3000);
+    }
+
+    private void hideObjects(){
+        //TODO
+    }
+
     public void accelerometerEvent() {
         // TODO
     }
 
     public void lightSensorEvent() {
-        // TODO
+        launchUltrasound();
     }
 
     @Override
