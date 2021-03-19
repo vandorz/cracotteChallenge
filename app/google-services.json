@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "275091251076",
+    "firebase_url": "https://coordinature-64f48-default-rtdb.firebaseio.com",
+    "project_id": "coordinature-64f48",
+    "storage_bucket": "coordinature-64f48.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:275091251076:android:c89d2fb4f6cb64823987d1",
+        "android_client_info": {
+          "package_name": "com.m2dl.cracotte.cracottechallenge"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "275091251076-emnrbkkrdpno5mk8aurrcpnqtui048ec.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAJifXo67s1z8XE8dGcHsM3UO0Li8SDV6Y"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "275091251076-emnrbkkrdpno5mk8aurrcpnqtui048ec.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
