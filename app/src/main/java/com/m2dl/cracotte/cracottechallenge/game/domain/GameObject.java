@@ -13,6 +13,7 @@ public abstract class GameObject {
     private float accelerationX;
     private float accelerationY;
     private int opacity;
+    private boolean active;
 
     public GameObject() {
         this.position = new Coordinates();
@@ -125,5 +126,13 @@ public abstract class GameObject {
 
     public void setOpacity(int opacity) {
         this.opacity = opacity;
+    }
+
+    public boolean isActive() {
+        return active;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
     }
 }
