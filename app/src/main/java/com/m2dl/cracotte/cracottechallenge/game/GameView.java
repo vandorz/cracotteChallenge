@@ -46,8 +46,6 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
     private int menuColor;
     private int menuTextColor;
 
-    private Date startDate;
-
     private long score;
 
     private Cave cave;
@@ -77,7 +75,6 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
         initScore();
         initCave();
         backgroundColor = Color.WHITE;
-        startDate = new Date();
     }
 
     private void initGameArea() {
@@ -133,8 +130,6 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
     }
 
     public void drawScoreMenu(Canvas canvas) {
-        Date currentDate = new Date();
-        score = (currentDate.getTime() - startDate.getTime()) / 1000;
         String textScore = getResources().getString(R.string.game_textView_score) + " : " + score;
 
         float textSize = 40;
@@ -242,8 +237,8 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
     }
 
     public void performAccelerometerEvent() {
-
         cave.forward();
+        score += 1;
         //TODO reprendre l'esprit du forward pour faire scroll le décors plutôt que faire avancer la chauve souris
     }
 
