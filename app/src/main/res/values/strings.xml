@@ -9,7 +9,7 @@
     <string name="menu_button_music">Music Toggle</string>
     <string name="menu_textView_copyright">Copyright : Aymeric Pinel, Clément Guichard, Romain Goyheneix</string>
 
-    <string name="game_textView_scoreActuel">Score</string>
+    <string name="game_textView_score">Score</string>
 
     <string name="scores_button_rejouer">Play again</string>
     <string name="scores_button_publier">Publish</string>
