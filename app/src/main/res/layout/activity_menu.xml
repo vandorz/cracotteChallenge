@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-xmlns:app="http://schemas.android.com/apk/res-auto"
-xmlns:tools="http://schemas.android.com/tools"
-android:layout_width="match_parent"
-android:layout_height="match_parent"
-tools:context=".menu.MenuActivity">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".menu.MenuActivity">
 
 
     <Button
@@ -13,6 +13,27 @@ tools:context=".menu.MenuActivity">
         android:layout_height="@dimen/_50sdp"
         android:layout_marginBottom="@dimen/_19sdp"
         android:text="@string/menu_button_lancerJeu"
+        app:layout_constraintBottom_toTopOf="@+id/menu_button_rules"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/menu_button_rules"
+        android:layout_width="@dimen/_200sdp"
+        android:layout_height="@dimen/_50sdp"
+        android:layout_marginBottom="@dimen/_19sdp"
+        android:text="@string/menu_button_regles"
+        app:layout_constraintBottom_toTopOf="@+id/menu_button_scores"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/menu_button_scores"
+        android:layout_width="@dimen/_200sdp"
+        android:layout_height="@dimen/_50sdp"
+        android:layout_marginBottom="@dimen/_19sdp"
+        android:text="@string/menu_button_scores"
         app:layout_constraintBottom_toTopOf="@+id/menu_button_quitterJeu"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.502"
@@ -22,11 +43,11 @@ tools:context=".menu.MenuActivity">
         android:id="@+id/menu_button_quitterJeu"
         android:layout_width="@dimen/_200sdp"
         android:layout_height="@dimen/_50sdp"
-        android:layout_marginBottom="232dp"
+        android:layout_marginBottom="@dimen/_72sdp"
         android:text="@string/menu_button_quitterJeu"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.503"
+        app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
@@ -34,24 +55,22 @@ tools:context=".menu.MenuActivity">
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/menu_textView_titreJeu"
-        android:textSize="@dimen/_75sdp"
+        android:textSize="60sp"
         app:layout_constraintBottom_toTopOf="@+id/menu_button_lancerJeu"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.472"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.213" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-    android:id="@+id/menu_textView_copyrightsJeu"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_marginStart="@dimen/_5sdp"
-    android:layout_marginBottom="@dimen/_21sdp"
-    android:text="@string/menu_textView_copyright"
-    android:textSize="6sp"
-    app:layout_constraintBottom_toBottomOf="parent"
-    app:layout_constraintStart_toStartOf="parent" />
+        android:id="@+id/menu_textView_copyrightsJeu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_5sdp"
+        android:layout_marginBottom="@dimen/_21sdp"
+        android:text="@string/menu_textView_copyright"
+        android:textSize="6sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

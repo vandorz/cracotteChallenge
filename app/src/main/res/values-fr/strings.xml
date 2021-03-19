@@ -1,8 +1,29 @@
 <resources>
-    <string name="app_name">Titre</string>
+    <string name="app_name">CoordiNature</string>
 
-    <string name="menu_textView_titreJeu">TITRE</string>
+    <string name="menu_textView_titreJeu">CoordiNature</string>
     <string name="menu_button_lancerJeu">Jouer</string>
+    <string name="menu_button_regles">Règles</string>
+    <string name="menu_button_scores">Scores</string>
     <string name="menu_button_quitterJeu">Quitter</string>
+    <string name="menu_button_music">Musique</string>
     <string name="menu_textView_copyright">Copyright : Aymeric Pinel, Clément Guichard, Romain Goyheneix</string>
+
+    <string name="game_textView_score">Score</string>
+
+    <string name="scores_button_rejouer">Rejouer</string>
+    <string name="scores_button_publier">Publier</string>
+    <string name="scores_button_menu">Menu</string>
+    <string name="scores_textView_scoreEffectue">Votre score : </string>
+    <string name="scores_table_titreScoresLocaux">Local</string>
+    <string name="scores_table_titreScoresGlobaux">Global</string>
+    <string name="scores_textView_votreNom">Votre nom (16 caractères max) :</string>
+    <string name="scores_plainText_votreNom">Entrez votre nom</string>
+    <string name="scores_toast_pasInternetPasPublication">Connexion internet introuvable. Le score ne sera pas envoyé.</string>
+    <string name="scores_toast_pasInternetPasChargement">Connexion internet introuvable. Impossible de charger les scores globaux.</string>
+    <string name="scores_toast_scoreDejaPublie">Ce score a déjà été publié.</string>
+    <string name="scores_toast_nomVide">Vous devez saisir un nom pour publier le score.</string>
+
+    <string name="rules_textView_titre">Règles du jeu</string>
+    <string name="rules_button_retour">Retour</string>
 </resources>
