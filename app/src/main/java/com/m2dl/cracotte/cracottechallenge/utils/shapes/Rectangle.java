@@ -12,17 +12,19 @@ public class Rectangle {
     }
 
     public boolean isOverlapping(Rectangle rectangle) {
-        Coordinates bottomLeftThis = new Coordinates(getPositionX(), getPositionY() + getHeight());
-        Coordinates topRightThis = new Coordinates(getPositionX() + getWidth(), getPositionY());
-        Coordinates bottomLeftOther = new Coordinates(rectangle.getPositionX(), rectangle.getPositionY() + rectangle.getHeight());
-        Coordinates topRightOther = new Coordinates(rectangle.getPositionX() + rectangle.getWidth(), rectangle.getPositionY());
+        float minX = getPositionX();
+        float maxX = getPositionX() + getWidth();
+        float minY = getPositionY();
+        float maxY = getPositionY() + getHeight();
+        float otherMinX = rectangle.getPositionX();
+        float otherMaxX = rectangle.getPositionX() + rectangle.getWidth();
+        float otherMinY = rectangle.getPositionY();
+        float otherMaxY = rectangle.getPositionY() + rectangle.getHeight();
 
-        if (topRightThis.getY() < bottomLeftOther.getY()
-                || bottomLeftThis.getY() > topRightOther.getY()) {
+        if (minX > otherMaxX || maxX < otherMinX) {
             return false;
         }
-        if (topRightThis.getX() < bottomLeftOther.getX()
-                || bottomLeftThis.getX() > topRightOther.getX()) {
+        if(minY > otherMaxY || maxY < otherMinY) {
             return false;
         }
         return true;
