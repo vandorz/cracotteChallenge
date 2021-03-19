@@ -2,9 +2,10 @@ package com.m2dl.cracotte.cracottechallenge.game.domain;
 
 import android.graphics.Canvas;
 
+import com.m2dl.cracotte.cracottechallenge.utils.shapes.Coordinates;
+
 public abstract class GameObject {
-    private float positionX;
-    private float positionY;
+    private Coordinates position;
     private float height;
     private float width;
     private float speedX;
@@ -12,8 +13,7 @@ public abstract class GameObject {
     private int opacity;
 
     public GameObject() {
-        this.positionX = 0.0f;
-        this.positionY = 0.0f;
+        this.position = new Coordinates();
         this.height = 0.0f;
         this.width = 0.0f;
         this.speedX = 0.0f;
@@ -23,25 +23,41 @@ public abstract class GameObject {
 
     public abstract void draw(Canvas canvas);
 
-    public void move(float movementInX, float movemntInY) {
-        this.positionY += movemntInY;
-        this.positionX += movementInX;
+    public void move(float movementInX, float movementInY) {
+        position.increaseX(movementInX);
+        position.increaseY(movementInY);
+    }
+
+    public boolean collision(GameObject gameObject) {
+        return hitbox().isOverlapping(gameObject.hitbox());
+    }
+
+    private Hitbox hitbox() {
+        return new Hitbox(position, height, width);
+    }
+
+    public Coordinates getPosition() {
+        return position;
+    }
+
+    public void setPosition(Coordinates position) {
+        this.position = position;
     }
 
     public float getPositionX() {
-        return positionX;
+        return position.getX();
     }
 
     public void setPositionX(float positionX) {
-        this.positionX = positionX;
+        position.setX(positionX);
     }
 
     public float getPositionY() {
-        return positionY;
+        return position.getY();
     }
 
     public void setPositionY(float positionY) {
-        this.positionY = positionY;
+        position.setY(positionY);
     }
 
     public float getHeight() {
