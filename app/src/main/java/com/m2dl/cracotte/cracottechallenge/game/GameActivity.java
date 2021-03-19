@@ -104,3 +104,4 @@ public class GameActivity extends AppCompatActivity {
         });
         gameView.setOnClickListener(listener -> gameView.touchedScreenEvent(listener.getPivotX(), listener.getPivotY()));
     }
+}
