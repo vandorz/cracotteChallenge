@@ -1,7 +1,5 @@
 package com.m2dl.cracotte.cracottechallenge.utils.shapes;
 
-import android.util.Log;
-
 public class Rectangle {
     private Coordinates position;
     private float height;
@@ -14,21 +12,19 @@ public class Rectangle {
     }
 
     public boolean isOverlapping(Rectangle rectangle) {
-        Coordinates bottomLeftThis = new Coordinates(getPositionX(), getPositionY() + getHeight());
-        Coordinates topRightThis = new Coordinates(getPositionX() + getWidth(), getPositionY());
-        Coordinates bottomLeftOther = new Coordinates(rectangle.getPositionX(), rectangle.getPositionY() + rectangle.getHeight());
-        Coordinates topRightOther = new Coordinates(rectangle.getPositionX() + rectangle.getWidth(), rectangle.getPositionY());
+        float minX = getPositionX();
+        float maxX = getPositionX() + getWidth();
+        float minY = getPositionY();
+        float maxY = getPositionY() + getHeight();
+        float otherMinX = rectangle.getPositionX();
+        float otherMaxX = rectangle.getPositionX() + rectangle.getWidth();
+        float otherMinY = rectangle.getPositionY();
+        float otherMaxY = rectangle.getPositionY() + rectangle.getHeight();
 
-        Log.d("Collisions:", "BLT " + bottomLeftThis + " TRT " + topRightThis + " BLO " + bottomLeftOther + " TRO " + topRightOther);
-
-        if (topRightThis.getY() < bottomLeftOther.getY()
-                || bottomLeftThis.getY() > topRightOther.getY()) {
-            Log.d("Collisions:", "NON 1");
+        if (minX > otherMaxX || maxX < otherMinX) {
             return false;
         }
-        if (topRightThis.getX() < bottomLeftOther.getX()
-                || bottomLeftThis.getX() > topRightOther.getX()) {
-            Log.d("Collisions", "NON 2");
+        if(minY > otherMaxY || maxY < otherMinY) {
             return false;
         }
         return true;
