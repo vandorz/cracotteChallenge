@@ -148,6 +148,11 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
         menuTextColor = Color.WHITE;
     }
 
+    public void performAccelerometerEvent(){
+        bat.forward();
+        //TODO reprendre l'esprit du forward pour faire scroll le décors plutôt que faire avancer la chauve souris
+    }
+
     private void endTheGame() {
         thread.setRunning(false);
         navigateToScoresActivity();
