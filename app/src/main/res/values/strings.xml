@@ -28,7 +28,7 @@
     <string name="rules_textView_regle1">1 : The bat must not touch the borders of the cave.</string>
     <string name="rules_textView_regle2">2 : Stay alive, and you earn points.</string>
     <string name="rules_textView_regle3">3 : Touch the screen to keep flying.</string>
-    <string name="rules_textView_regle4">4 : Cover the light sensor to trigger an ultra-sound.</string>
+    <string name="rules_textView_regle4">4 : Cover the light sensor to trigger an ultra-sound and reveal invisible helicopters.</string>
     <string name="rules_textView_regle5">5 : Move your device (smartphone/tablet) to advance.</string>
     <string name="rules_textView_regle6">6 : Do the best score you can!</string>
     <string name="rules_button_retour">Back</string>
