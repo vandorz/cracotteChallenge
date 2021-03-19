@@ -223,7 +223,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
     }
 
     private void updateCave() {
-        cave.move(-5.0f);
+        cave.update();
     }
 
     private void randomizeHelicopterCreation() {
@@ -234,7 +234,8 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
     }
 
     public void performAccelerometerEvent() {
-        bat.forward();
+
+        cave.forward();
         //TODO reprendre l'esprit du forward pour faire scroll le décors plutôt que faire avancer la chauve souris
     }
 
