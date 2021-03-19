@@ -65,7 +65,6 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
 
     private void initCave() {
         cave = new Cave(MENU_HEIGHT, screenHeight, 0, screenWidth);
-        cave.generate();
     }
 
     @Override
@@ -105,6 +104,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
 
     public void update() {
         updateColors();
+        updateCave();
     }
 
     private void updateColors() {
@@ -119,6 +119,10 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
     private void updateScoreMenuColor() {
         menuColor = Color.rgb(0, 51, 102);
         menuTextColor = Color.WHITE;
+    }
+
+    private void updateCave() {
+        cave.move(-5.0f);
     }
 
     private void endTheGame() {
