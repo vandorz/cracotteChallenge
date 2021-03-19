@@ -176,8 +176,10 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
     private void verifyCollisions() {
         boolean lost = false;
         for (GameObject gameObject : gameObjectList) {
-            if (bat.collision(gameObject)) {
-                lost = true;
+            if (!(gameObject instanceof Ultrasound)){
+                if (bat.collision(gameObject)) {
+                    lost = true;
+                }
             }
         }
         if(cave.collision(bat)) {
@@ -242,7 +244,6 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
     public void performAccelerometerEvent() {
 
         cave.forward();
-        //TODO reprendre l'esprit du forward pour faire scroll le décors plutôt que faire avancer la chauve souris
     }
 
     private void endTheGame() {
