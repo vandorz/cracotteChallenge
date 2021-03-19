@@ -2,7 +2,9 @@ package com.m2dl.cracotte.cracottechallenge.game.domain;
 
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.Rect;
 import android.util.Log;
 
 public class Sprite extends GameObject {
@@ -18,7 +20,7 @@ public class Sprite extends GameObject {
         if (this.image != null) {
             Paint paint = new Paint();
             paint.setAlpha(this.getOpacity());
-            canvas.drawBitmap(image, this.getPositionX()-(this.getWidth()/2), this.getPositionY()-(this.getHeight()/2), paint);
+            canvas.drawBitmap(image, this.getPositionX(), this.getPositionY(), paint);
         } else {
             Log.e("Sprite", "Cannot draw sprite because image is null");
         }
