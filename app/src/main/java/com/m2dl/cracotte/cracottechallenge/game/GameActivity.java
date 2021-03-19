@@ -1,8 +1,8 @@
 package com.m2dl.cracotte.cracottechallenge.game;
 
-import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.Context;
 import android.hardware.Sensor;
 import android.hardware.SensorManager;
@@ -14,7 +14,7 @@ import android.view.WindowManager;
 import com.m2dl.cracotte.cracottechallenge.game.listeners.AccelerometerSensorListener;
 import com.m2dl.cracotte.cracottechallenge.game.listeners.LightSensorListener;
 
-public class GameActivity extends AppCompatActivity {
+public class GameActivity extends Activity {
     private GameView gameView;
     private SensorManager sensorManager;
 

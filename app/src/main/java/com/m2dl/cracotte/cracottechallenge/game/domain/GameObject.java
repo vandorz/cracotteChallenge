@@ -1,4 +1,4 @@
-package com.m2dl.cracotte.cracottechallenge.domain;
+package com.m2dl.cracotte.cracottechallenge.game.domain;
 
 import android.graphics.Canvas;
 
