@@ -38,7 +38,6 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
 
     private List<GameObject> gameObjectList;
     private Bat bat;
-
     public GameView(Context context) {
         super(context);
         getHolder().addCallback(this);
@@ -56,6 +55,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
         initBat();
         initGameObjets();
         initScore();
+        backgroundColor = Color.WHITE;
     }
 
     private void initGameArea() {
@@ -170,8 +170,12 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
         bat.fly();
     }
 
-    public void updateLightMeasurement(float lightMeasurement) {
-        this.lightMeasurement = lightMeasurement;
+    public void accelerometerEvent() {
+        // TODO
+    }
+
+    public void lightSensorEvent() {
+        // TODO
     }
 
     @Override
