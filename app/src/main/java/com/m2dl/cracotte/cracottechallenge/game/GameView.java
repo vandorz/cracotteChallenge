@@ -2,6 +2,7 @@ package com.m2dl.cracotte.cracottechallenge.game;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -11,6 +12,7 @@ import android.view.SurfaceView;
 import androidx.annotation.NonNull;
 
 import com.m2dl.cracotte.cracottechallenge.R;
+import com.m2dl.cracotte.cracottechallenge.scores.ScoresActivity;
 
 public class GameView extends SurfaceView implements SurfaceHolder.Callback {
     public static final int MENU_HEIGHT = 150;
@@ -98,7 +100,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
     }
 
     private void updateScoreMenuColor() {
-        menuColor = Color.rgb(0, 127, 255);
+        menuColor = Color.rgb(0, 51, 102);
         menuTextColor = Color.WHITE;
     }
 
@@ -110,7 +112,8 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
     public void navigateToScoresActivity() {
         Context context = getContext();
         Activity gameActivity = (Activity) context;
-        // TODO
+        Intent scoresIntent = new Intent().setClass(getContext(), ScoresActivity.class);
+        getContext().startActivity(scoresIntent);
         gameActivity.finish();
     }
 
