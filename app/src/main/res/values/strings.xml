@@ -5,4 +5,6 @@
     <string name="menu_button_lancerJeu">Play</string>
     <string name="menu_button_quitterJeu">Quit</string>
     <string name="menu_textView_copyright">Copyright : Aymeric Pinel, Clément Guichard, Romain Goyheneix</string>
+
+    <string name="game_textView_score">Score</string>
 </resources>
