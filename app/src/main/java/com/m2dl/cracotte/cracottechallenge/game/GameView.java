@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.RectF;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
@@ -89,6 +90,11 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
             drawBat(canvas);
             drawAllObjects(canvas);
         }
+        RectF rectF = new RectF();
+        rectF.set(0,500,0,500);
+        Paint p = new Paint();
+        p.setColor(Color.RED);
+        canvas.drawArc(rectF,0,100, true, p);
     }
 
     public void drawBackground(Canvas canvas) {
