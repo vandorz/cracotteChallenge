@@ -10,7 +10,10 @@ public abstract class GameObject {
     private float width;
     private float speedX;
     private float speedY;
+    private float accelerationX;
+    private float accelerationY;
     private int opacity;
+    private boolean active;
 
     public GameObject() {
         this.position = new Coordinates();
@@ -18,6 +21,8 @@ public abstract class GameObject {
         this.width = 0.0f;
         this.speedX = 0.0f;
         this.speedY = 0.0f;
+        this.accelerationX = 0.0f;
+        this.accelerationY = 0.0f;
         this.opacity = 100;
     }
 
@@ -42,6 +47,13 @@ public abstract class GameObject {
 
     public void setPosition(Coordinates position) {
         this.position = position;
+    }
+
+    public void update(){
+        this.position.setX(this.position.getX() + this.speedX);
+        this.position.setY(this.position.getY() + this.speedY);
+        this.speedX += this.accelerationX;
+        this.speedY += this.accelerationY;
     }
 
     public float getPositionX() {
@@ -92,11 +104,35 @@ public abstract class GameObject {
         this.speedY = speedY;
     }
 
+    public float getAccelerationX() {
+        return accelerationX;
+    }
+
+    public void setAccelerationX(float accelerationX) {
+        this.accelerationX = accelerationX;
+    }
+
+    public float getAccelerationY() {
+        return accelerationY;
+    }
+
+    public void setAccelerationY(float accelerationY) {
+        this.accelerationY = accelerationY;
+    }
+
     public int getOpacity() {
         return opacity;
     }
 
     public void setOpacity(int opacity) {
         this.opacity = opacity;
+    }
+
+    public boolean isActive() {
+        return active;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
     }
 }

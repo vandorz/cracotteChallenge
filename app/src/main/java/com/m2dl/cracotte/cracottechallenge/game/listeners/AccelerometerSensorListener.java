@@ -10,8 +10,11 @@ import java.util.Date;
 
 public class AccelerometerSensorListener implements SensorEventListener {
     private static final int ACCELERATION_THRESHOLD = 20;
+    private static final long TIME_BETWEEN_RESETS = 500;
 
     private final GameView gameView;
+
+    private Date lastReset;
 
     public AccelerometerSensorListener(GameView gameView) {
         this.gameView = gameView;
@@ -38,7 +41,10 @@ public class AccelerometerSensorListener implements SensorEventListener {
                                 Math.abs(accelerationOnY) > ACCELERATION_THRESHOLD ||
                                 Math.abs(accelerationOnZ) > ACCELERATION_THRESHOLD
                 ) {
-                    gameView.accelerometerEvent();
+                    if (lastReset == null || new Date().getTime() - lastReset.getTime() > TIME_BETWEEN_RESETS) {
+                        lastReset = new Date();
+                        gameView.performAccelerometerEvent();
+                    }
                 }
             }
         }
