@@ -52,6 +52,8 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
 
     private float lightMeasurement;
 
+    private boolean objectsSeen = false;
+
     private List<GameObject> gameObjectList;
     private Bat bat;
 
@@ -156,7 +158,14 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
 
     private void drawAllObjects(Canvas canvas) {
         for (GameObject gameObject : gameObjectList) {
-            gameObject.draw(canvas);
+            if (gameObject instanceof ApacheHelicopter){
+                if (objectsSeen){
+                    gameObject.draw(canvas);
+                }
+            }else{
+                gameObject.draw(canvas);
+            }
+
         }
     }
 
@@ -190,6 +199,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
         bat.update();
         ArrayList<GameObject> toRemove = new ArrayList<>();
         for (GameObject gameObject : gameObjectList){
+            gameObject.update();
             gameObject.update();
             if(gameObject.getPositionX() < 0 - gameObject.getWidth()/2) {
                 toRemove.add(gameObject);
@@ -270,12 +280,12 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
     }
 
     private void revealObjects(){
-        //TODO
+        objectsSeen = true;
         gameViewHandler.postDelayed(this::hideObjects, 3000);
     }
 
     private void hideObjects(){
-        //TODO
+        objectsSeen = false;
     }
 
     public void accelerometerEvent() {

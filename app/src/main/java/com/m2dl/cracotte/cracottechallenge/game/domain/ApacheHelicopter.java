@@ -7,7 +7,7 @@ import android.graphics.BitmapFactory;
 import com.m2dl.cracotte.cracottechallenge.R;
 
 public class ApacheHelicopter extends Sprite {
-    private final float SPEED_VALUE = 8;
+    private final float SPEED_VALUE = 1;
 
     public ApacheHelicopter(Context context, float width, float height, float initialPositionX, float initialPositionY) {
         super();
