@@ -51,9 +51,9 @@ public class LocalScoresService {
         editorNames.putString(nbScoresString, playerName);
         editorScores.putLong(nbScoresString, score);
 
-        editorGlobal.apply();
-        editorNames.apply();
-        editorScores.apply();
+        editorGlobal.commit();
+        editorNames.commit();
+        editorScores.commit();
     }
 
     public String getSavedPlayerName() {

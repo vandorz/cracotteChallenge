@@ -27,6 +27,7 @@ import com.m2dl.cracotte.cracottechallenge.scores.ScoresActivity;
 import com.m2dl.cracotte.cracottechallenge.utils.shapes.Coordinates;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Random;
 
@@ -44,6 +45,8 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
     private int backgroundColor;
     private int menuColor;
     private int menuTextColor;
+
+    private Date startDate;
 
     private long score;
 
@@ -74,6 +77,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
         initScore();
         initCave();
         backgroundColor = Color.WHITE;
+        startDate = new Date();
     }
 
     private void initGameArea() {
@@ -128,6 +132,8 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
     }
 
     public void drawScoreMenu(Canvas canvas) {
+        Date currentDate = new Date();
+        score = (currentDate.getTime() - startDate.getTime()) / 1000;
         String textScore = getResources().getString(R.string.game_textView_score) + " : " + score;
 
         float textSize = 40;
@@ -248,6 +254,8 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
         Context context = getContext();
         Activity gameActivity = (Activity) context;
         Intent scoresIntent = new Intent().setClass(getContext(), ScoresActivity.class);
+        scoresIntent.putExtra("scorePerformed", score);
+        scoresIntent.putExtra("hasNewScore", true);
         getContext().startActivity(scoresIntent);
         gameActivity.finish();
     }
