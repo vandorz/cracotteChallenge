@@ -6,18 +6,21 @@ import android.content.Intent;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.util.Log;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
 import androidx.annotation.NonNull;
 
 import com.m2dl.cracotte.cracottechallenge.R;
+import com.m2dl.cracotte.cracottechallenge.game.domain.ApacheHelicopter;
 import com.m2dl.cracotte.cracottechallenge.game.domain.Bat;
 import com.m2dl.cracotte.cracottechallenge.game.domain.GameObject;
 import com.m2dl.cracotte.cracottechallenge.scores.ScoresActivity;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class GameView extends SurfaceView implements SurfaceHolder.Callback {
     public static final int MENU_HEIGHT = 150;
@@ -33,8 +36,6 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
     private int menuTextColor;
 
     private long score;
-
-    private float lightMeasurement;
 
     private List<GameObject> gameObjectList;
     private Bat bat;
@@ -70,6 +71,15 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
         bat.setPositionX(screenWidth/5);
         bat.setPositionY(screenHeight/2);
         bat.setAccelerationY(GRAVITY);
+    }
+
+    private void initHelicopter() {
+        float defineHelicopterWidth = screenWidth/10;
+        float defineHelicopterHeight = screenWidth/10;
+        float initialPositionX = screenWidth + (defineHelicopterWidth / 2);
+        float initialPositionY = randomNumber(150, (int)screenHeight);
+        ApacheHelicopter apacheHelicopter = new ApacheHelicopter(getContext(), defineHelicopterWidth, defineHelicopterHeight, initialPositionX, initialPositionY);
+        gameObjectList.add(apacheHelicopter);
     }
 
     private void initGameObjets(){
@@ -123,14 +133,35 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
     }
 
     public void update() {
+        randomizeHelicopterCreation();
         updateAllObjects();
         updateColors();
+        verifyCollisions();
+    }
+
+    private void verifyCollisions() {
+        boolean lost = false;
+        for (GameObject gameObject : gameObjectList) {
+            if (bat.collision(gameObject)) {
+                lost = true;
+            }
+        }
+        if (lost) {
+            endTheGame();
+        }
     }
 
     private void updateAllObjects(){
         bat.update();
+        ArrayList<GameObject> toRemove = new ArrayList<>();
         for (GameObject gameObject : gameObjectList){
             gameObject.update();
+            if(gameObject.getPositionX() < 0 - gameObject.getWidth()/2) {
+                toRemove.add(gameObject);
+            }
+        }
+        for (GameObject gameObject : toRemove) {
+            gameObjectList.remove(gameObject);
         }
     }
 
@@ -146,6 +177,13 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
     private void updateScoreMenuColor() {
         menuColor = Color.rgb(0, 51, 102);
         menuTextColor = Color.WHITE;
+    }
+
+    private void randomizeHelicopterCreation() {
+        int randomNumber = (int) randomNumber(1,50);
+        if (randomNumber == 1){
+            initHelicopter();
+        }
     }
 
     public void performAccelerometerEvent(){
@@ -176,6 +214,10 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
 
     public void lightSensorEvent() {
         // TODO
+    }
+
+    private float randomNumber(int min, int max){
+        return (float)(Math.random()*(max-min+1)+min);
     }
 
     @Override
