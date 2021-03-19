@@ -2,6 +2,8 @@ package com.m2dl.cracotte.cracottechallenge.game.domain.cave;
 
 import android.graphics.Canvas;
 
+import com.m2dl.cracotte.cracottechallenge.game.domain.Bat;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -75,5 +77,12 @@ public class Cave {
 
     public float getHeight() {
         return height;
+    }
+
+    public boolean collision(Bat bat) {
+        for (CaveBlock caveBlock : caveBlockList)
+            if (caveBlock.collision(bat))
+                return true;
+        return false;
     }
 }

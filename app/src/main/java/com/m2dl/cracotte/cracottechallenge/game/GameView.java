@@ -174,6 +174,9 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
                 lost = true;
             }
         }
+        if(cave.collision(bat)) {
+            lost = true;
+        }
         if (lost) {
             endTheGame();
         }

@@ -2,6 +2,9 @@ package com.m2dl.cracotte.cracottechallenge.game.domain.cave;
 
 import android.graphics.Canvas;
 
+import com.m2dl.cracotte.cracottechallenge.game.domain.Bat;
+import com.m2dl.cracotte.cracottechallenge.game.domain.GameObject;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -72,5 +75,15 @@ public class CaveBlock {
 
     public void setPositionX(float positionX) {
         this.positionX = positionX;
+    }
+
+    public boolean collision(Bat bat) {
+        for (GameObject gameObject : topElements)
+            if (bat.collision(gameObject))
+                return true;
+        for (GameObject gameObject : bottomElements)
+            if (bat.collision(gameObject))
+                return true;
+        return false;
     }
 }
