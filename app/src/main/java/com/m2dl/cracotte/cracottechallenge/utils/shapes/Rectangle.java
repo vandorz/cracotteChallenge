@@ -1,5 +1,7 @@
 package com.m2dl.cracotte.cracottechallenge.utils.shapes;
 
+import android.graphics.Rect;
+
 public class Rectangle {
     private Coordinates position;
     private float height;
@@ -12,22 +14,9 @@ public class Rectangle {
     }
 
     public boolean isOverlapping(Rectangle rectangle) {
-        float minX = getPositionX();
-        float maxX = getPositionX() + getWidth();
-        float minY = getPositionY();
-        float maxY = getPositionY() + getHeight();
-        float otherMinX = rectangle.getPositionX();
-        float otherMaxX = rectangle.getPositionX() + rectangle.getWidth();
-        float otherMinY = rectangle.getPositionY();
-        float otherMaxY = rectangle.getPositionY() + rectangle.getHeight();
-
-        if (minX > otherMaxX || maxX < otherMinX) {
-            return false;
-        }
-        if(minY > otherMaxY || maxY < otherMinY) {
-            return false;
-        }
-        return true;
+        Rect self = new Rect((int)position.getX(), (int)position.getY(), (int)position.getX() + (int)width, (int)position.getY() + (int)height);
+        Rect other = new Rect((int)rectangle.getPositionX(), (int)rectangle.getPositionY(), (int)rectangle.getPositionX() + (int)rectangle.getWidth(), (int)rectangle.getPositionY() + (int)rectangle.getHeight());
+        return self.intersect(other);
     }
 
     public float getPositionX() {
@@ -68,5 +57,14 @@ public class Rectangle {
 
     public void setWidth(float width) {
         this.width = width;
+    }
+
+    @Override
+    public String toString() {
+        return "Rectangle{" +
+                "position=" + position +
+                ", height=" + height +
+                ", width=" + width +
+                '}';
     }
 }
