@@ -49,8 +49,8 @@ public abstract class GameObject {
     }
 
     public void update(){
-        this.positionX += this.speedX;
-        this.positionY += speedY;
+        this.position.setX(position.getX() + this.speedX);
+        this.position.setY(position.getY() + this.speedY);
         this.speedX += this.accelerationX;
         this.speedY += this.accelerationY;
     }
