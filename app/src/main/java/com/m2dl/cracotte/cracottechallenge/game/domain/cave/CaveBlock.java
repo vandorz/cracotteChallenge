@@ -7,12 +7,14 @@ import java.util.List;
 import java.util.Random;
 
 public class CaveBlock {
-    private Cave cave;
+    private final Cave cave;
+    private float positionX;
     private final List<CaveElement> topElements;
     private final List<CaveElement> bottomElements;
 
-    public CaveBlock(Cave cave) {
+    public CaveBlock(Cave cave, float positionX) {
         this.cave = cave;
+        this.positionX = positionX;
         this.topElements = new ArrayList<>();
         this.bottomElements = new ArrayList<>();
     }
@@ -21,31 +23,32 @@ public class CaveBlock {
         topElements.clear();
         bottomElements.clear();
         for (int i = 0; i < Cave.NB_ELEMENTS_PER_SCREEN; i++) {
-            float positionX = cave.getWidth() / Cave.NB_ELEMENTS_PER_SCREEN * i + cave.getLeft();
-            topElements.add(createTopElement(positionX));
-            bottomElements.add(createBottomElement(positionX));
+            float blockPositionInX = cave.getWidth() / Cave.NB_ELEMENTS_PER_SCREEN * i + positionX;
+            topElements.add(createTopElement(blockPositionInX));
+            bottomElements.add(createBottomElement(blockPositionInX));
         }
     }
 
-    private CaveElement createTopElement(float positionX) {
+    private CaveElement createTopElement(float blockPositionInX) {
         CaveElement element = (new Random().nextInt(10) < 2) ? new Stalactite() : new Rock();
         element.randomizeSize();
         element.setWidth(cave.getWidth() / Cave.NB_ELEMENTS_PER_SCREEN);
-        element.setPositionX(positionX);
+        element.setPositionX(blockPositionInX);
         element.setPositionY(cave.getTop());
         return element;
     }
 
-    private CaveElement createBottomElement(float positionX) {
+    private CaveElement createBottomElement(float blockPositionInX) {
         CaveElement element = (new Random().nextInt(10) < 3) ? new Stalagmite() : new Rock();
         element.randomizeSize();
-        element.setWidth(cave.getWidth() / cave.NB_ELEMENTS_PER_SCREEN);
-        element.setPositionX(positionX);
+        element.setWidth(cave.getWidth() / Cave.NB_ELEMENTS_PER_SCREEN);
+        element.setPositionX(blockPositionInX);
         element.setPositionY(cave.getBottom() - element.getHeight());
         return element;
     }
 
     public void move(float movementInX) {
+        positionX += movementInX;
         for (CaveElement caveElement : topElements) {
             caveElement.move(movementInX, 0);
         }
@@ -61,5 +64,13 @@ public class CaveBlock {
         for (CaveElement caveElement : bottomElements) {
             caveElement.draw(canvas);
         }
+    }
+
+    public float getPositionX() {
+        return positionX;
+    }
+
+    public void setPositionX(float positionX) {
+        this.positionX = positionX;
     }
 }

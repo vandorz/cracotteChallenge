@@ -8,6 +8,8 @@ import java.util.Random;
 
 public class Cave {
     public final static int NB_ELEMENTS_PER_SCREEN = 10;
+    private final static int NB_CAVE_BLOCKS = 3;
+
     private final float top;
     private final float bottom;
     private final float left;
@@ -15,7 +17,7 @@ public class Cave {
     private final float width;
     private final float height;
 
-    private CaveBlock caveBlock;
+    private List<CaveBlock> caveBlockList;
 
     public Cave(float top, float bottom, float left, float right) {
         this.top = top;
@@ -24,16 +26,31 @@ public class Cave {
         this.right = right;
         this.width = this.right - this.left;
         this.height = this.bottom - this.top;
-        this.caveBlock = new CaveBlock(this);
-        this.caveBlock.generate();
+        
+        this.caveBlockList = new ArrayList<>();
+        for (int i = 0; i < NB_CAVE_BLOCKS; i++) {
+            System.out.println(i + " " + width + " " + left + " " + (i * width + left));
+            CaveBlock caveBlock = new CaveBlock(this, i * width + left);
+            caveBlock.generate();
+            this.caveBlockList.add(caveBlock);
+        }
     }
 
     public void move(float movementInX) {
-        this.caveBlock.move(movementInX);
+        for (CaveBlock caveBlock : caveBlockList) {
+            caveBlock.move(movementInX);
+            if(caveBlock.getPositionX() + width < left) {
+                caveBlock.setPositionX((NB_CAVE_BLOCKS - 1) * width + left + movementInX);
+                System.out.println(caveBlock.getPositionX() + " NEW");
+                caveBlock.generate();
+            }
+        }
     }
 
     public void draw(Canvas canvas) {
-        this.caveBlock.draw(canvas);
+        for (CaveBlock caveBlock : caveBlockList) {
+            caveBlock.draw(canvas);
+        }
     }
 
     public float getTop() {
