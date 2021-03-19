@@ -100,6 +100,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
         float initialPositionX = screenWidth + (defineHelicopterWidth / 2);
         float initialPositionY = randomNumber(150, (int)screenHeight);
         ApacheHelicopter apacheHelicopter = new ApacheHelicopter(getContext(), defineHelicopterWidth, defineHelicopterHeight, initialPositionX, initialPositionY);
+        apacheHelicopter.setActive(true);
         gameObjectList.add(apacheHelicopter);
     }
 
@@ -199,6 +200,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
         }
         for (GameObject gameObject : toRemove) {
             gameObjectList.remove(gameObject);
+            gameObject.setActive(false);
         }
     }
 
