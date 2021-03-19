@@ -25,5 +25,11 @@
     <string name="scores_toast_nomVide">Vous devez saisir un nom pour publier le score.</string>
 
     <string name="rules_textView_titre">Règles du jeu</string>
+    <string name="rules_textView_regle1">1 : La chauve souris ne doit pas toucher les bords de la grotte.</string>
+    <string name="rules_textView_regle2">2 : Restez en vie, vous gagnerez des points.</string>
+    <string name="rules_textView_regle3">3 : Touchez l\'écran pour continuer de voler.</string>
+    <string name="rules_textView_regle4">4 : Cachez votre détecteur de lumière pour émettre un ultra-son.</string>
+    <string name="rules_textView_regle5">5 : Bougez votre téléphone/tablette pour avancer.</string>
+    <string name="rules_textView_regle6">6 : Faites le meilleur score possible !</string>
     <string name="rules_button_retour">Retour</string>
 </resources>
