@@ -1,5 +1,7 @@
 package com.m2dl.cracotte.cracottechallenge.utils.shapes;
 
+import android.util.Log;
+
 public class Rectangle {
     private Coordinates position;
     private float height;
@@ -17,12 +19,16 @@ public class Rectangle {
         Coordinates bottomLeftOther = new Coordinates(rectangle.getPositionX(), rectangle.getPositionY() + rectangle.getHeight());
         Coordinates topRightOther = new Coordinates(rectangle.getPositionX() + rectangle.getWidth(), rectangle.getPositionY());
 
+        Log.d("Collisions:", "BLT " + bottomLeftThis + " TRT " + topRightThis + " BLO " + bottomLeftOther + " TRO " + topRightOther);
+
         if (topRightThis.getY() < bottomLeftOther.getY()
                 || bottomLeftThis.getY() > topRightOther.getY()) {
+            Log.d("Collisions:", "NON 1");
             return false;
         }
         if (topRightThis.getX() < bottomLeftOther.getX()
                 || bottomLeftThis.getX() > topRightOther.getX()) {
+            Log.d("Collisions", "NON 2");
             return false;
         }
         return true;
