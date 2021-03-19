@@ -21,7 +21,7 @@ import java.util.List;
 
 public class GameView extends SurfaceView implements SurfaceHolder.Callback {
     public static final int MENU_HEIGHT = 150;
-    public static final float GRAVITY = (float) 9.8/60;
+    public static final float GRAVITY = 0.4f;
 
     private GameThread thread;
 
