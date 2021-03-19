@@ -121,6 +121,10 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
         // TODO
     }
 
+    public void accelerometerEvent() {
+        // TODO
+    }
+
     public void updateLightMeasurement(float lightMeasurement) {
         this.lightMeasurement = lightMeasurement;
     }
