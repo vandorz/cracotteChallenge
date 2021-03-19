@@ -12,7 +12,12 @@ import android.view.SurfaceView;
 import androidx.annotation.NonNull;
 
 import com.m2dl.cracotte.cracottechallenge.R;
+import com.m2dl.cracotte.cracottechallenge.game.domain.cave.Cave;
+import com.m2dl.cracotte.cracottechallenge.game.domain.cave.Rock;
+import com.m2dl.cracotte.cracottechallenge.game.domain.cave.Stalactite;
+import com.m2dl.cracotte.cracottechallenge.game.domain.cave.Stalagmite;
 import com.m2dl.cracotte.cracottechallenge.scores.ScoresActivity;
+import com.m2dl.cracotte.cracottechallenge.utils.shapes.Coordinates;
 
 public class GameView extends SurfaceView implements SurfaceHolder.Callback {
     public static final int MENU_HEIGHT = 150;
@@ -27,6 +32,8 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
     private int menuTextColor;
 
     private long score;
+
+    private Cave cave;
 
     public GameView(Context context) {
         super(context);
@@ -43,6 +50,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
     private void initGame() {
         initGameArea();
         initScore();
+        initCave();
         backgroundColor = Color.WHITE;
     }
 
@@ -55,12 +63,18 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
         score = 0;
     }
 
+    private void initCave() {
+        cave = new Cave(MENU_HEIGHT, screenHeight, 0, screenWidth);
+        cave.generate();
+    }
+
     @Override
     public void draw(Canvas canvas) {
         super.draw(canvas);
         if (canvas != null) {
             drawBackground(canvas);
             drawScoreMenu(canvas);
+            drawCave(canvas);
         }
     }
 
@@ -83,6 +97,10 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
 
         canvas.drawRect(0, 0, screenWidth, MENU_HEIGHT, menuBackgroundPaint);
         canvas.drawText(textScore, screenWidth / 2, textTop, menuTextPaint);
+    }
+
+    public void drawCave(Canvas canvas) {
+        cave.draw(canvas);
     }
 
     public void update() {
