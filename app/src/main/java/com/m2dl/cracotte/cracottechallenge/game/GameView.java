@@ -15,11 +15,16 @@ import android.view.SurfaceView;
 import androidx.annotation.NonNull;
 
 import com.m2dl.cracotte.cracottechallenge.R;
+import com.m2dl.cracotte.cracottechallenge.game.domain.cave.Cave;
+import com.m2dl.cracotte.cracottechallenge.game.domain.cave.Rock;
+import com.m2dl.cracotte.cracottechallenge.game.domain.cave.Stalactite;
+import com.m2dl.cracotte.cracottechallenge.game.domain.cave.Stalagmite;
 import com.m2dl.cracotte.cracottechallenge.game.domain.ApacheHelicopter;
 import com.m2dl.cracotte.cracottechallenge.game.domain.Bat;
 import com.m2dl.cracotte.cracottechallenge.game.domain.GameObject;
 import com.m2dl.cracotte.cracottechallenge.game.domain.Ultrasound;
 import com.m2dl.cracotte.cracottechallenge.scores.ScoresActivity;
+import com.m2dl.cracotte.cracottechallenge.utils.shapes.Coordinates;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -42,10 +47,13 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
 
     private long score;
 
+    private Cave cave;
+
     private float lightMeasurement;
 
     private List<GameObject> gameObjectList;
     private Bat bat;
+
     public GameView(Context context) {
         super(context);
         getHolder().addCallback(this);
@@ -64,6 +72,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
         initBat();
         initGameObjets();
         initScore();
+        initCave();
         backgroundColor = Color.WHITE;
     }
 
@@ -98,6 +107,10 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
         score = 0;
     }
 
+    private void initCave() {
+        cave = new Cave(MENU_HEIGHT, screenHeight, 0, screenWidth);
+    }
+
     @Override
     public void draw(Canvas canvas) {
         super.draw(canvas);
@@ -106,6 +119,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
             drawBat(canvas);
             drawAllObjects(canvas);
             drawScoreMenu(canvas);
+            drawCave(canvas);
         }
     }
 
@@ -130,12 +144,16 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
         canvas.drawText(textScore, screenWidth / 2, textTop, menuTextPaint);
     }
 
-    private void drawBat(Canvas canvas){
+    public void drawCave(Canvas canvas) {
+        cave.draw(canvas);
+    }
+
+    private void drawBat(Canvas canvas) {
         bat.draw(canvas);
     }
 
-    private void drawAllObjects(Canvas canvas){
-        for (GameObject gameObject : gameObjectList){
+    private void drawAllObjects(Canvas canvas) {
+        for (GameObject gameObject : gameObjectList) {
             gameObject.draw(canvas);
         }
     }
@@ -144,6 +162,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
         randomizeHelicopterCreation();
         updateAllObjects();
         updateColors();
+        updateCave();
         removeUnusedObjects();
         verifyCollisions();
     }
@@ -200,6 +219,10 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
         menuTextColor = Color.WHITE;
     }
 
+    private void updateCave() {
+        cave.move(-5.0f);
+    }
+
     private void randomizeHelicopterCreation() {
         int randomNumber = (int) randomNumber(1,50);
         if (randomNumber == 1){
@@ -207,7 +230,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
         }
     }
 
-    public void performAccelerometerEvent(){
+    public void performAccelerometerEvent() {
         bat.forward();
         //TODO reprendre l'esprit du forward pour faire scroll le décors plutôt que faire avancer la chauve souris
     }
